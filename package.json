@@ -1,24 +1,48 @@
 {
-    "author": {
-        "name": "Xavier Hainaux",
-        "email": "xavier.hainaux@gmail.com"
-    },
-    "name": "localize-with-spreadsheet",
-    "description": "Create a localization file in Android or iOS format from a Google Spreadsheet",
-    "version": "0.2.1",
-    "homepage": "https://github.com/xavierha/localize-with-spreadsheet",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/xavierha/localize-with-spreadsheet.git"
-    },
-    "main": "index.js",
-    "dependencies": {
-        "google-spreadsheets": "git://github.com/xavierha/node-google-spreadsheets.git",
-        "q": "0.9.2",
-        "mkpath": "0.1.0"
-    },
-    "devDependencies": {
-        "nodeunit": "0.8.1"
-    },
-    "readmeFilename": "README.md"
+  "author": {
+    "name": "Xavier Hainaux",
+    "email": "xavier.hainaux@gmail.com"
+  },
+  "name": "localize-with-spreadsheet",
+  "description": "Create a localization file in Android or iOS format from a Google Spreadsheet",
+  "version": "0.2.1",
+  "homepage": "https://github.com/xavierha/localize-with-spreadsheet",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/xavierha/localize-with-spreadsheet.git"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "google-spreadsheets": "git://github.com/xavierha/node-google-spreadsheets.git",
+    "q": "0.9.2",
+    "mkpath": "0.1.0"
+  },
+  "devDependencies": {
+    "nodeunit": "0.8.1"
+  },
+  "readmeFilename": "README.md",
+  "readme": "# Convert a Google Spreadsheet to a localization file\n\n\n## Installation\n\tnpm install localize-with-spreadsheet\n\n## Example\nGiven a Google Spreadsheet like this:  \n![Spreadsheet example](https://github.com/xavierha/localize-with-spreadsheet/raw/master/doc/spreadsheet-example.png)\n\nThe tool fetch the spreadsheet and write the result to a file in the Android or iOS format:\n\n![Result android](https://github.com/xavierha/localize-with-spreadsheet/raw/master/doc/result-android.png) ![Result iOS](https://github.com/xavierha/localize-with-spreadsheet/raw/master/doc/result-ios.png)\n\nCreate a file update-localization.js\n\n\tvar Localize = require(\"localize-with-spreadsheet\");\n    var transformer = Localize.fromGoogleSpreadsheet(\"0Aq6WlQdq71FydDZlaWdmMEUtc2tUb1k2cHRBS2hzd2c\", '*');\n    transformer.setKeyCol('KEY');\n\n    transformer.save(\"values/strings.xml\", { valueCol: \"NL\", format: \"android\" });\n    transformer.save(\"values-fr/strings.xml\", { valueCol: \"FR\", format: \"android\" });\n\n    transformer.save(\"nl.lproj/Localizable.strings\", { valueCol: \"NL\", format: \"ios\" });\n    transformer.save(\"fr.lproj/Localizable.strings\", { valueCol: \"FR\", format: \"ios\" });\n\nRun it with\n\n    node update-localization.js\n\n## Advanced\nYou can filter the worksheets to include with the second parameter of 'fromGoogleSpreadsheet'\nEx:\n\n    Localize.fromGoogleSpreadsheet(\"<Key>\", '*');\n    Localize.fromGoogleSpreadsheet(\"<Key>\", ['HomeScreen, 'ContactScreen']);\n    Localize.fromGoogleSpreadsheet(\"<Key>\", [0, 2]);\n\n## Notes\n- The script will preserve everything that is above the tags: < !-- AUTO-GENERATED --> or // AUTO-GENERATED\n- Your spreadsheet should be \"Published\" for this to work\n- You need to have git installed for the installation",
+  "bugs": {
+    "url": "https://github.com/xavierha/localize-with-spreadsheet/issues"
+  },
+  "_id": "localize-with-spreadsheet@0.2.1",
+  "dist": {
+    "shasum": "4de690f01c466ee3b514c38cb146c6ffb30bf54d",
+    "tarball": "http://registry.npmjs.org/localize-with-spreadsheet/-/localize-with-spreadsheet-0.2.1.tgz"
+  },
+  "_from": "localize-with-spreadsheet@*",
+  "_npmVersion": "1.3.5",
+  "_npmUser": {
+    "name": "xavierha",
+    "email": "xavier.hainaux@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "xavierha",
+      "email": "xavier.hainaux@gmail.com"
+    }
+  ],
+  "directories": {},
+  "_shasum": "4de690f01c466ee3b514c38cb146c6ffb30bf54d",
+  "_resolved": "https://registry.npmjs.org/localize-with-spreadsheet/-/localize-with-spreadsheet-0.2.1.tgz"
 }
