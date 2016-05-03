@@ -1,12 +1,6 @@
 var Line = require('./Line.js');
 var GoogleSpreadsheet = require('google-spreadsheet');
 var Q = require('q');
-var EOL = require('os').EOL;
-
-var LineReader = {
-    select: function (sheets, keyCol, valCol, cb) {
-    }
-};
 
 var GSReader = function (spreadsheetKey, sheetsFilter) {
     this._sheet = new GoogleSpreadsheet(spreadsheetKey);
@@ -44,7 +38,7 @@ GSReader.prototype.fetchAllCells = function () {
     } else {
         return self._fetchedWorksheets;
     }
-}
+};
 
 GSReader.prototype.select = function (keyCol, valCol) {
     var deferred = Q.defer();
@@ -68,7 +62,7 @@ GSReader.prototype.extractFromRawData = function (rawWorksheets, keyCol, valCol)
     }
 
     return extractedLines;
-}
+};
 
 GSReader.prototype.extractFromWorksheet = function (rawWorksheet, keyCol, valCol) {
     var results = [];
@@ -77,8 +71,8 @@ GSReader.prototype.extractFromWorksheet = function (rawWorksheet, keyCol, valCol
 
     var headers = rows[0];
     if (headers) {
-        var keyIndex = -1, valIndex = -1;
-        for (var i = 0; i < headers.length; i++) {
+        var keyIndex = -1, valIndex = -1, i;
+        for (i = 0; i < headers.length; i++) {
             var value = headers[i];
             if (value == keyCol) {
                 keyIndex = i;
@@ -87,7 +81,7 @@ GSReader.prototype.extractFromWorksheet = function (rawWorksheet, keyCol, valCol
                 valIndex = i;
             }
         }
-        for (var i = 1; i < rows.length; i++) {
+        for (i = 1; i < rows.length; i++) {
             var row = rows[i];
             if (row) {
                 var keyValue = row[keyIndex];
@@ -99,7 +93,7 @@ GSReader.prototype.extractFromWorksheet = function (rawWorksheet, keyCol, valCol
     }
 
     return results;
-}
+};
 
 GSReader.prototype.flatenWorksheet = function (rawWorksheet) {
     var rows = [];
@@ -125,13 +119,10 @@ GSReader.prototype.flatenWorksheet = function (rawWorksheet) {
         row[cell.col - 1] = cell.value;
     }
     return rows;
-}
+};
 
 GSReader.isAllSheets = function (sheet) {
-    if (!sheet || sheet == '*') {
-        return true;
-    }
-    return false;
+    return !!(!sheet || sheet == '*');
 };
 
 GSReader.shouldUseWorksheet = function (selectedSheets, title, index) {
@@ -150,7 +141,7 @@ GSReader.shouldUseWorksheet = function (selectedSheets, title, index) {
         }
         return false;
     }
-}
+};
 
 var WorksheetReader = function (filterSheets, worksheets) {
     this._filterSheets = filterSheets;
@@ -158,11 +149,11 @@ var WorksheetReader = function (filterSheets, worksheets) {
     this._index = 0;
 
     this._data = [];
-}
+};
 
 WorksheetReader.prototype.read = function (cb) {
     this.next(cb);
-}
+};
 
 WorksheetReader.prototype.next = function (cb) {
     var self = this;
@@ -182,7 +173,7 @@ WorksheetReader.prototype.next = function (cb) {
     } else {
         cb(this._data);
     }
-}
+};
 
 var FakeReader = function (array) {
     this._array = array;
@@ -206,11 +197,11 @@ var forceArray = function (val) {
     if (Array.isArray(val)) return val;
     if (!val) return [];
     return [ val ];
-}
+};
 
 module.exports = {
     GS: GSReader,
     Fake: FakeReader
-}
+};
 
 
