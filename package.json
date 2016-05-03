@@ -11,6 +11,9 @@
         "type": "git",
         "url": "git://github.com/tntdigital/localize-with-spreadsheet.git"
     },
+    "scripts": {
+        "test": "nodeunit tests/"
+    },
     "main": "index.js",
     "dependencies": {
         "google-spreadsheet": "1.0.0",
@@ -18,7 +21,7 @@
         "mkpath": "0.1.0"
     },
     "devDependencies": {
-        "nodeunit": "0.8.1"
+        "nodeunit": "0.9.1"
     },
     "readmeFilename": "README.md",
     "publishConfig": {
