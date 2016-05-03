@@ -3,13 +3,13 @@
         "name": "Xavier Hainaux",
         "email": "xavier.hainaux@gmail.com"
     },
-    "name": "localize-with-spreadsheet",
+    "name": "@tntdigital/localize-with-spreadsheet",
     "description": "Create a localization file in Android or iOS format from a Google Spreadsheet",
     "version": "0.2.1",
-    "homepage": "https://github.com/xavierha/localize-with-spreadsheet",
+    "homepage": "https://github.com/tntdigital/localize-with-spreadsheet",
     "repository": {
         "type": "git",
-        "url": "git://github.com/xavierha/localize-with-spreadsheet.git"
+        "url": "git://github.com/tntdigital/localize-with-spreadsheet.git"
     },
     "main": "index.js",
     "dependencies": {
@@ -20,5 +20,8 @@
     "devDependencies": {
         "nodeunit": "0.8.1"
     },
-    "readmeFilename": "README.md"
+    "readmeFilename": "README.md",
+    "publishConfig": {
+        "registry": "https://tntdigital.artifactoryonline.com/tntdigital/api/npm/npm-local"
+    }
 }
