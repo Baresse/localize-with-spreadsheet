@@ -43,6 +43,13 @@ exports.testReplaceThreePointWithEllipsisCharacter = function (test) {
     test.done();
 };
 
+exports.testReplaceRepeatedThreePointWithEllipsisCharacter = function (test) {
+    var line = transformer.transformKeyValue('ma_cle', 'Ma valeur... ...est ça');
+    test.equal('<string name="ma_cle">Ma valeur&#8230; &#8230;est ça</string>', line);
+
+    test.done();
+};
+
 exports.testReplaceThreePointInTheMiddleWithEllipsisCharacter = function (test) {
     var line = transformer.transformKeyValue('ma_cle', 'Ma valeur...à remplacer');
     test.equal('<string name="ma_cle">Ma valeur&#8230;à remplacer</string>', line);

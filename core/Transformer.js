@@ -48,6 +48,8 @@ var androidTransformer = {
         normalizedValue = normalizedValue.replace(/&/gi, "&amp;");
         normalizedValue = normalizedValue.replace(/\u00A0/gi, "\\u00A0");
         normalizedValue = normalizedValue.replace(/([^\.]|^)(\.{3})([^\.]|$)/gi, '$1&#8230;$3');
+        // do it a second time to fix values... ...like this (don't ask)
+        normalizedValue = normalizedValue.replace(/([^\.]|^)(\.{3})([^\.]|$)/gi, '$1&#8230;$3');
 
         if (normalizedValue.toLowerCase().includes('<a href="%')) {
             normalizedValue = "<![CDATA[" + normalizedValue + "]]>";
