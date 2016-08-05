@@ -5,7 +5,7 @@
   },
   "name": "@tntdigital/localize-with-spreadsheet",
   "description": "Create a localization file in Android or iOS format from a Google Spreadsheet",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/tntdigital/localize-with-spreadsheet",
   "repository": {
     "type": "git",
